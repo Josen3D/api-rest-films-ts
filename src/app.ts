@@ -5,7 +5,13 @@ import express from "express";
 // import cors
 import cors from "cors";
 
-import { Request, Response } from "express";
+// import db connection
+import dbConnect from "./config/mongo";
+
+import { Request, Response, NextFunction } from "express";
+
+// import film routes
+import filmRoutes from "./routes/film.routes";
 
 // create express app
 const app = express();
@@ -14,11 +20,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", (req: Request, res: Response) => {
-  res.send({ message: "Hola mundo" });
+app.use("/api", filmRoutes);
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(404).json({ message: "endpoint not found" });
 });
 
 const PORT = process.env.PORT || 3000;
 
 // put server to listen
 app.listen(PORT, () => console.log("Server runing on port:", PORT));
+// connect to DB
+dbConnect().then(() => console.log("Connected to MongoDB"));

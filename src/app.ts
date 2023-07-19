@@ -12,6 +12,8 @@ import { Request, Response, NextFunction } from "express";
 
 // import film routes
 import filmRoutes from "./routes/film.routes";
+// import auth routes
+import authRoutes from "./routes/auth.routes";
 
 // create express app
 const app = express();
@@ -21,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", filmRoutes);
+app.use("/api", authRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({ message: "endpoint not found" });

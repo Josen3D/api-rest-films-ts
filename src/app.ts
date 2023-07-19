@@ -14,6 +14,8 @@ import { Request, Response, NextFunction } from "express";
 import filmRoutes from "./routes/film.routes";
 // import auth routes
 import authRoutes from "./routes/auth.routes";
+// import storage routes
+import storageRoutes from "./routes/storage.route";
 
 // create express app
 const app = express();
@@ -24,6 +26,7 @@ app.use(express.json());
 
 app.use("/api", filmRoutes);
 app.use("/api", authRoutes);
+app.use("/api", storageRoutes);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({ message: "endpoint not found" });

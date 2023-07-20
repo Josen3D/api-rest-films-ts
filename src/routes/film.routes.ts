@@ -9,6 +9,9 @@ import {
   deleteItem,
 } from "../controllers/film.controller";
 
+// import authMiddleware
+import { authMiddleware } from "../middlewares/session.middleware";
+
 // import validators
 import {
   validatorCreateFilm,
@@ -21,9 +24,9 @@ const router = Router();
 router
   .get("/films", getItems)
   .get("/films/:id", validatorGetFilm, getItem)
-  .post("/films", validatorCreateFilm, createItem)
-  .put("/films/:id", validatorGetFilm, validatorCreateFilm, updateItem)
-  .delete("/films/:id", validatorGetFilm, deleteItem);
+  .post("/films", authMiddleware, validatorCreateFilm, createItem)
+  .put("/films/:id", authMiddleware, validatorGetFilm, validatorCreateFilm, updateItem)
+  .delete("/films/:id", authMiddleware, validatorGetFilm, deleteItem);
 
 // export router
 export default router;

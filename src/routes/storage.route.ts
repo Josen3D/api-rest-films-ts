@@ -6,7 +6,7 @@ import { authMiddleware } from "../middlewares/session.middleware";
 const router = Router();
 
 router.post(
-  "/film/upload",
+  "/films/upload",
   authMiddleware,
   multerMiddleware.single("myfile"),
   getFile

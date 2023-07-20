@@ -5,4 +5,5 @@ export interface Film {
   country: string[];
   genres: string[];
   score: number;
+  mediaId: string;
 }

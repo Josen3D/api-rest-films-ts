@@ -1,5 +1,5 @@
 // import Schema, Types, model and Model from mongoose
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 // import film interface
 import { Film } from "../interfaces/film.interface";
 
@@ -28,6 +28,10 @@ const FilmSchema = new Schema<Film>(
     },
     score: {
       type: Number,
+      required: true,
+    },
+    mediaId: {
+      type: String,
       required: true,
     },
   },

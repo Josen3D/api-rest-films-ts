@@ -8,3 +8,13 @@ export const registerUpload = async ({ fileName, path, idUser }: Storage) => {
   const responseItem = await StorageModel.create({ fileName, path, idUser });
   return responseItem;
 };
+
+export const getAllFilms = async () => {
+  const responseGet = await StorageModel.find({});
+  return responseGet;
+};
+
+export const getOneFilm = async (id: string) => {
+  const responseGet = await StorageModel.findOne({ _id: id });
+  return responseGet;
+};
